@@ -1,0 +1,47 @@
+﻿@model Domain.POCO.DTOs.EmployeeDto
+
+@{
+    ViewData["Title"] = "Deleted";
+}
+
+<h1>Deleted</h1>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="fn">First Name</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.fn)
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="fn">Last Name</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ln)
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="fn">Birth Date</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.d)
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="fn">Wage</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.w)
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="fn">Work days</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.wd)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

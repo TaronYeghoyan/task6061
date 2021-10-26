@@ -1,0 +1,51 @@
+﻿@model Domain.POCO.DTOs.ReportEmployeeDto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Report Employee</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="container">
+    <form asp-action="Report" method="get">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col">
+                <label asp-for="ds" class="control-label">Start Time</label>
+                <input  asp-for="ds" class="form-control" />
+                <span asp-validation-for="ds" class="text-danger"></span>
+            </div>
+            <div class="col">
+                <label asp-for="de" class="control-label">End Time</label>
+                <input asp-for="de" class="form-control" />
+                <span asp-validation-for="de" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-auto">
+                <label asp-for="ws" class="control-label">Wage Start</label>
+                <input asp-for="ws" class="form-control" />
+                <span asp-validation-for="ws" class="text-danger"></span>
+            </div>
+            <div class="col-md-auto">
+                <label asp-for="we" class="control-label">Wage End</label>
+                <input asp-for="we" class="form-control" />
+                <span asp-validation-for="we" class="text-danger"></span>
+            </div>
+            <div class="col-md">
+                <label asp-for="dn" class="control-label">Department Names</label>
+                <select asp-for="dn" class="form-control" asp-items="@ViewBag.DepartmentName">
+                    <option value="All">All</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <br />
+                <input type="submit" value="Search" class="btn btn-info" />
+            </div>
+        </div>
+    </form>
+</div>

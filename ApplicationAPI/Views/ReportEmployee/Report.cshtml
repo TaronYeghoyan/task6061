@@ -1,0 +1,120 @@
+﻿@model ReportEmployeeViewModel
+
+@{
+    ViewData["Title"] = "Report";
+    var prevDisabled = !Model.ReportList.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.ReportList.HasNextPage ? "disabled" : "";
+}
+<h1>Report</h1>
+
+<hr />
+<div class="container">
+    <form asp-action="Report" method="get">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col">
+                <label class="control-label">Start Time</label>
+                <input name="ds" asp-for="@Model.Search.ds" class="form-control" />
+                <span asp-validation-for="@Model.Search.ds" class="text-danger"></span>
+            </div>
+            <div class="col">
+                <label class="control-label">End Time</label>
+                <input name="de" asp-for="@Model.Search.de" class="form-control" />
+                <span asp-validation-for="@Model.Search.de" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-auto">
+                <label class="control-label">Wage Start</label>
+                <input name="ws" asp-for="@Model.Search.ws" class="form-control" />
+                <span asp-validation-for="@Model.Search.ws" class="text-danger"></span>
+            </div>
+            <div class="col-md-auto">
+                <label class="control-label">Wage End</label>
+                <input name="we" asp-for="@Model.Search.we" class="form-control" />
+                <span asp-validation-for="@Model.Search.we" class="text-danger"></span>
+            </div>
+            <div class="col-md">
+                <label class="control-label">Department Names</label>
+                <select name="dn" asp-for="@Model.Search.dn" class="form-control" asp-items="@Model.DepartmentNames">
+                    <option value="All">All</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <br />
+                <input type="submit" value="Search" class="btn btn-info" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Employee
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Wage
+            </th>
+            <th>
+                Work Days
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Worked Days
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ReportList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fnln)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.w)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.st)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wdt)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Report"
+   asp-route-page="@(Model.ReportList.Page - 1)"
+   asp-route-ds="@(Model.Search.ds)"
+   asp-route-de="@(Model.Search.de)"
+   asp-route-ws="@(Model.Search.ws)"
+   asp-route-we="@(Model.Search.we)"
+   asp-route-dn="@(Model.Search.dn)"
+   class="btn btn-default @prevDisabled"> Previous </a>
+<a asp-action="Report"
+   asp-route-page="@(Model.ReportList.Page + 1)"
+   asp-route-ds="@(Model.Search.ds)"
+   asp-route-de="@(Model.Search.de)"
+   asp-route-ws="@(Model.Search.ws)"
+   asp-route-we="@(Model.Search.we)"
+   asp-route-dn="@(Model.Search.dn)"
+   class="btn btn-default @nextDisabled"> Next </a>

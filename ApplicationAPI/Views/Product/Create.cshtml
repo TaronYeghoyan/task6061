@@ -1,0 +1,44 @@
+﻿@model Domain.POCO.DTOs.ProductDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Created">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="n" class="control-label">Name</label>
+                <input asp-for="n" class="form-control" />
+                <span asp-validation-for="n" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="p" class="control-label">Price</label>
+                <input asp-for="p" class="form-control" />
+                <span asp-validation-for="p" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bc" class="control-label">Barcode</label>
+                <input asp-for="bc" class="form-control" />
+                <span asp-validation-for="bc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="plu" class="control-label">PLU</label>
+                <input asp-for="plu" class="form-control" />
+                <span asp-validation-for="plu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

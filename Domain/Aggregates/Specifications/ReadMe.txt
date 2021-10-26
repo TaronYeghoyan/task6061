@@ -1,0 +1,1 @@
+﻿This folder include repository of Specification Pattern

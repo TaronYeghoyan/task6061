@@ -1,0 +1,57 @@
+﻿@model PagingViewModel<Domain.POCO.DTOs.ProductDto>
+
+@{
+    ViewData["Title"] = "Index";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<h1>Product</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+            <th>
+                @Html.DisplayName("Barcode")
+            </th>
+            <th>
+                @Html.DisplayName("PLU")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.n)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.p)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.plu)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" asp-route-page="@(Model.Page - 1)" class="btn btn-default @prevDisabled"> Previous </a>
+<a asp-action="Index" asp-route-page="@(Model.Page + 1)" class="btn btn-default @nextDisabled"> Next </a>

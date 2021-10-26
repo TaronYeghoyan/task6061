@@ -1,0 +1,80 @@
+﻿@model PagingViewModel<Domain.POCO.DTOs.EmployeeDto>
+
+@{
+    ViewData["Title"] = "Index";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<h1>Employees</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="Search" value="@ViewData["Filter"]" />
+            <input type="submit" value="Search" class="btn btn-info" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                FirstName
+            </th>
+            <th>
+                LastName
+            </th>
+            <th>
+                BirthDate
+            </th>
+            <th>
+                Wage
+            </th>
+            <th>
+                Workdays
+            </th>
+            <th>
+                DepartmentName
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ln)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.d)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.w )
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wd )
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dn)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" asp-route-page="@(Model.Page - 1)" asp-route-Search="@ViewData["Filter"]" class="btn btn-default @prevDisabled"> Previous </a>
+<a asp-action="Index" asp-route-page="@(Model.Page + 1)" asp-route-Search="@ViewData["Filter"]" class="btn btn-default @nextDisabled"> Next </a>
